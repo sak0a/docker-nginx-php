@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.5-fpm-alpine
 
 # An (optional) host that relays your msgs
 ENV RELAYHOST=
@@ -11,7 +11,7 @@ ENV RELAYHOST_PASSWORD=
 ENV SMTP_USE_TLS=
 
 # List of additional PHP extensions
-ENV PHP_EXTENSIONS bcmath ftp gd intl opcache pcntl pdo_mysql soap sockets xsl zip
+ENV PHP_EXTENSIONS bcmath ftp gd intl pcntl pdo_mysql soap sockets xsl zip
 
 # Install system dependencies
 RUN apk --no-cache add \
@@ -62,7 +62,7 @@ COPY healthz /var/www/healthz
 COPY bin/setup.sh /setup.sh
 COPY bin/run.sh /run.sh
 COPY conf/supervisord.conf /etc/supervisord.conf
-COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.9 /usr/bin/composer /usr/bin/composer
 
 EXPOSE 80
 
